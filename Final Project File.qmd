@@ -25,6 +25,7 @@ The `echo: false` option disables the printing of code (only output is displayed
 
 library(tidyverse)
 library(ggplot2)
+library(gganimate)
 
 rawdata <- read_csv("data/pollution.csv")
 
@@ -32,10 +33,37 @@ rawdata <- read_csv("data/pollution.csv")
 
 Research Question:
 
+I want to group by continent, sum the total count of each continent, and create a histogram that shows continent vs count for 1 year.
+
 ```{r}
 
-bycountry <- rawdata |>
-  group_by(ParentLocation) |>
-  summarize(IndicatorCode)
+filtered <- rawdata |>
+  filter(Dim2ValueCode == "GHECAUSE_GHE000000", Dim1ValueCode == "SEX_BTSX")
+
+continent <- filtered |>
+  group_by(ParentLocation, Period) |>
+  mutate(count = sum(FactValueNumeric))
+
+filtered <- filtered |>
+  group_by(Location, Period) |>
+  mutate(count = sum(FactValueNumeric))
+
+continent
+
+```
+```{r}
+
+ggplot(data = continent, aes(x = ParentLocation)) +
+  geom_bar() +
+  # Here comes the gganimate code
+  transition_states(
+    Period,
+    transition_length = 2,
+    state_length = 1
+  ) +
+  enter_fade() +
+  exit_shrink() +
+  ease_aes('sine-in-out')
+  
 
 ```
