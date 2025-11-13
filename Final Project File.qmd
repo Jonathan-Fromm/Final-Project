@@ -10,12 +10,6 @@ Quarto enables you to weave together content and executable code into a finished
 
 ## Running Code
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
 You can add options to executable code like this
 
 ```{r}
@@ -25,11 +19,23 @@ You can add options to executable code like this
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
+## Project
+
 ```{r}
 
 library(tidyverse)
 library(ggplot2)
 
 rawdata <- read_csv("data/pollution.csv")
+
+```
+
+Research Question:
+
+```{r}
+
+bycountry <- rawdata |>
+  group_by(ParentLocation) |>
+  summarize(IndicatorCode)
 
 ```
