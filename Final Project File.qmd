@@ -1,5 +1,5 @@
 ---
-title: "Final Project QMD"
+title: "Final Project"
 format: html
 editor: visual
 ---
@@ -24,3 +24,12 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+
+library(tidyverse)
+library(ggplot2)
+
+rawdata <- read_csv("data/pollution.csv")
+
+```
