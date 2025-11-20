@@ -20,17 +20,19 @@ colnames(filtered)[13] <- "Gender"
 
 continent <- filtered |>
   group_by(ParentLocation, Period, Gender) |>
-  mutate(count = sum(FactValueNumeric))
+  mutate(deaths = mean(FactValueNumeric))
 
 filtered <- filtered |>
   group_by(Location, Period) |>
-  mutate(count = sum(FactValueNumeric))
+  mutate(deaths = mean(FactValueNumeric))
 
 continent <- continent |>
   group_by(ParentLocation, Period) |>
   arrange(desc(ParentLocation)) |>
   group_by(ParentLocation, Period, Gender) |>
   slice(1)
+
+continent
   
 ```
 
@@ -70,8 +72,8 @@ ggplot(
 
 ```{r}
 
-ggplot(data = continent, aes(x = ParentLocation)) +
-  geom_bar() +
+ggplot(data = continent, aes(x = ParentLocation, y = deaths)) +
+  geom_bar(stat = "identity") +
   # Here comes the gganimate code
   transition_states(
     Period,
@@ -80,6 +82,19 @@ ggplot(data = continent, aes(x = ParentLocation)) +
   ) +
   enter_fade() +
   exit_shrink() +
-  ease_aes('sine-in-out')
+  labs(title = 'Year: {frame_time}', x = 'Continent', y = 'Average deaths') +
+  transition_time(Period) +
+  ease_aes('sine-in-out') 
+
+```
+
+
+```{r}
+
+africa <- continent |>
+  group_by(ParentLocation, Period) |>
+  arrange(desc(ParentLocation)) |>
+  group_by(ParentLocation, Period, Gender) |>
+  slice(1)
 
 ```
