@@ -74,7 +74,8 @@ ggplot(
 
 ggplot(data = continent, aes(x = ParentLocation, y = deaths, fill = ParentLocation)) +
   geom_bar(stat = "identity") +
-  scale_fill_manual(values = c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b")) +
+  scale_fill_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) +
+  theme(legend.position = "none") +
   # Here comes the gganimate code
   transition_states(
     Period,
