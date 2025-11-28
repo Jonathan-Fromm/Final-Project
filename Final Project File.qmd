@@ -83,11 +83,10 @@ ggplot(data = continent, aes(x = ParentLocation, y = deaths, fill = ParentLocati
   ) +
   enter_fade() +
   exit_shrink() +
-  labs(title = 'Year: {closest_state}', x = 'Continent', y = 'Average deaths') +
+  labs(title = 'Year: {closest_state}', x = 'Region', y = 'Average Deaths (per 100,000 population)') +
   ease_aes('sine-in-out') 
 
 ```
-
 
 ```{r}
 
