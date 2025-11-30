@@ -40,32 +40,31 @@ Research Question:
 
 ```{r}
 
-airq = airquality
-airq$Month = country.name[airq$Month]
-
 ggplot(
-  airq, 
-  aes(Day, Temp, group = Month)
-) + 
+  continent, 
+  aes(x = Period, y = deaths, fill = ParentLocation, color = ParentLocation)) + 
   geom_line() + 
   geom_segment(
-    aes(xend = 31, yend = Temp), 
+    aes(xend = 2019, yend = deaths), 
     linetype = 2, 
-    colour = 'grey'
-  ) + 
+    colour = "grey") + 
   geom_point(size = 2) + 
+  scale_fill_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) + 
+  scale_color_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) +
+  scale_x_continuous(breaks = seq(2010, 2019, by = 1)) +
   geom_text(
-    aes(x = 31.1, label = Month), 
-    hjust = 0
-  ) + 
-  gganimate::transition_reveal(Day) +
+    aes(x = 2019.1, label = ParentLocation), 
+    hjust = 0) + 
+  facet_wrap(~ Gender, dir = "v") + 
+  gganimate::transition_reveal(Period) +
   coord_cartesian(clip = 'off') + 
   labs(
-    title = 'Temperature in New York', 
-    y = 'Temperature (°F)'
-  ) + 
+    x = "Year",
+    y = "Average Deaths (per 100,000 population)",
+    title = "Average Deaths from Pollution (by Continent and Gender)") + 
   theme_minimal() + 
-  theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
+  theme(plot.margin = margin(5.5, 40, 5.5, 5.5), 
+        legend.position = "none")
 
 ```
 
