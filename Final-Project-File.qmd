@@ -33,6 +33,7 @@ continent <- continent |>
   slice(1)
   
 ```
+
 ```{r}
 
 ggplot(data = continent, aes(x = ParentLocation, y = deaths, fill = ParentLocation)) +
@@ -42,8 +43,7 @@ ggplot(data = continent, aes(x = ParentLocation, y = deaths, fill = ParentLocati
   transition_states(
     Period,
     transition_length = 2,
-    state_length = 1
-  ) +
+    state_length = 1) +
   enter_fade() +
   exit_shrink() +
   labs(title = 'Year: {closest_state}', x = 'Region', y = 'Average Deaths (per 100,000 population)') +
