@@ -77,7 +77,7 @@ ggplot(
   labs(
     x = "Year",
     y = "Average Deaths (per 100,000 population)",
-    title = "Average HAP-Attributable Death Rates (by Continent and Gender)") + 
+    title = "Average HAP-Attributable Death Rates (by Continent and Sex)") + 
   theme_minimal() + 
   theme(plot.margin = margin(5.5, 100, 5.5, 5.5), 
         legend.position = "none")
