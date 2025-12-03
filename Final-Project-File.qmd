@@ -1,7 +1,7 @@
 ---
 title: "Final Project"
 author: "Angelika Glogov, Cynthia Kennedy, Mac Riley, & Jonathan Fromm"
-format: html
+format: pdf
 editor: visual
 ---
 
@@ -43,7 +43,7 @@ each country that can be attributed to air pollution exposure (focusing on fine
 particulate matter, or PM2.5). The WHO first compiled epidemiological evidence 
 that displayed an association between the exposure to air pollution and several 
 diseases, including lower respiratory infections, strokes, ischaemic heart 
-diseases, chronic obstructive pulmonary diseases, and lung cancers. They used 
+diseases, chronic obstructive pulmonary diseases, and lung cancers. They used 
 these conclusions and an alternative baseline level of air pollution exposure 
 which poses a minimum health risk (while holding other conditions constant) to 
 determine the increased risk of these diseases being induced by air pollution 
