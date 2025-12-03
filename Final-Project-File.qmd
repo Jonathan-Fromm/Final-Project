@@ -4,9 +4,9 @@ format: html
 editor: visual
 ---
 
-## Project
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 
-```{r, echo = FALSE, results = FALSE}
+suppressMessages(library(tidyverse))
 
 library(tidyverse)
 library(ggplot2)
@@ -34,7 +34,7 @@ continent <- continent |>
   
 ```
 
-```{r, echo = FALSE, results = FALSE}
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 
 #| fig-width: 20
 #| fig-height: 5
@@ -67,7 +67,7 @@ ggplot(
 
 ```
 
-```{r, echo = FALSE, results = FALSE}
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 
 nogender <- rawdata |>
   filter(Dim2ValueCode == "GHECAUSE_GHE000000", Dim1ValueCode == "SEX_BTSX")
@@ -102,7 +102,7 @@ continent <- continent |>
   
 ```
 
-```{r, echo = FALSE, results = FALSE}
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 
 ggplot(data = continentnogender, aes(x = ParentLocation, y = deaths, fill = ParentLocation)) +
   geom_bar(stat = "identity") +
@@ -121,7 +121,7 @@ ggplot(data = continentnogender, aes(x = ParentLocation, y = deaths, fill = Pare
 
 ```
 
-```{r, echo = FALSE, results = FALSE}
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 
 continent <- filtered|>
   group_by(ParentLocation, Period) |>
@@ -148,7 +148,7 @@ mostpopulous <- africa |>
 
 ```
 
-```{r, echo = FALSE, results = FALSE}
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 
 ggplot(
   mostpopulous, 
@@ -177,7 +177,7 @@ ggplot(
 
 ```
 
-```{r, echo = FALSE, results = FALSE}
+```{r, echo = FALSE, warning = FALSE, message=FALSE}
 
 africa <- continent |>
   filter(ParentLocation == "Africa") |>
