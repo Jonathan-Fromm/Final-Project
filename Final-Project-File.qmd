@@ -1,9 +1,12 @@
 ---
 title: "Final Project"
 author: "Angelika Glogov, Cynthia Kennedy, Mac Riley, & Jonathan Fromm"
-format: pdf
+format: html
 editor: visual
 ---
+
+## Link to animations
+https://docs.google.com/document/d/1UTypArRaOsMwPB56y-8Q2uVr4tfJlxWDACOPvhng6GI/edit?usp=sharing
 
 ## Introduction
 
