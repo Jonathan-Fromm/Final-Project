@@ -14,28 +14,37 @@ library(gganimate)
 
 rawdata <- read_csv("data/pollution.csv")
 
+nogender <- rawdata |>
+  filter(Dim2ValueCode == "GHECAUSE_GHE000000", Dim1ValueCode == "SEX_BTSX")
+colnames(nogender)[13] <- "Gender"
+
 filtered <- rawdata |>
   filter(Dim2ValueCode == "GHECAUSE_GHE000000", Dim1ValueCode != "SEX_BTSX")
 colnames(filtered)[13] <- "Gender"
-
-continent <- filtered |>
-  group_by(ParentLocation, Period, Gender) |>
-  mutate(deaths = mean(FactValueNumeric))
 
 filtered <- filtered |>
   group_by(Location, Period) |>
   mutate(deaths = mean(FactValueNumeric))
 
-continent <- continent |>
+continent <- filtered|>
+  group_by(ParentLocation, Period) |>
+  arrange(desc(ParentLocation)) |>
+  group_by(ParentLocation, Period, Gender)
+
+continentnogender <- nogender |>
+  group_by(ParentLocation, Period, Gender) |>
+  mutate(deaths = (mean(FactValueNumeric))) |>
   group_by(ParentLocation, Period) |>
   arrange(desc(ParentLocation)) |>
   group_by(ParentLocation, Period, Gender) |>
-  slice(1)
+  filter(!duplicated(deaths))
+
+continentnogender
   
 ```
 ```{r}
 
-ggplot(data = continent, aes(x = ParentLocation, y = deaths, fill = ParentLocation)) +
+ggplot(data = continentnogender, aes(x = ParentLocation, y = deaths, fill = ParentLocation)) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) +
   theme(legend.position = "none") +
@@ -47,7 +56,7 @@ ggplot(data = continent, aes(x = ParentLocation, y = deaths, fill = ParentLocati
   ) +
   enter_fade() +
   exit_shrink() +
-  labs(title = 'Year: {closest_state}', x = 'Region', y = 'Average Deaths (per 100,000 population)') +
+  labs(title = 'Year: {closest_state}', x = 'Region', y = 'Average Deaths from Air Pollution (per 100,000 population)') +
   ease_aes('sine-in-out') 
 
 ```
@@ -75,18 +84,111 @@ ggplot(
   labs(
     x = "Year",
     y = "Average Deaths (per 100,000 population)",
-    title = "Average Deaths from Pollution (by Continent and Gender)") + 
+    title = "Average Deaths from Air Pollution (by Continent and Gender)") + 
   theme_minimal() + 
   theme(plot.margin = margin(5.5, 40, 5.5, 5.5), 
         legend.position = "none")
 
 ```
+
 ```{r}
 
 africa <- continent |>
-  group_by(ParentLocation, Period) |>
-  arrange(desc(ParentLocation)) |>
-  group_by(ParentLocation, Period, Gender) |>
-  slice(1)
+  filter(ParentLocation == "Africa") |>
+  group_by(Location, Period, Gender) |>
+  mutate(deaths = (mean(FactValueNumeric))) |>
+  group_by(Location, Period) |>
+  arrange(desc(Location)) |>
+  group_by(Location, Period, Gender) |>
+  filter(!duplicated(deaths))
+
+mostpopulous <- africa |>
+  filter(Location == "Nigeria" || Location == "Ethiopia" || Location == "Egypt" || Location == "Democratic Republic of the Congo" || Location == "United Republic of Tanzania" || Location == "South Africa" || Location == "Kenya" || Location == "Sudan" || Location == "Uganda") |>
+  group_by(Location, Period, Gender) |>
+  mutate(deaths = (mean(FactValueNumeric))) |>
+  group_by(Location, Period) |>
+  arrange(desc(Location)) |>
+  group_by(Location, Period, Gender) |>
+  filter(!duplicated(deaths))
+
+```
+```{r}
+
+ggplot(
+  mostpopulous, 
+  aes(x = Period, y = deaths, fill = Location, color = Location)) + 
+  geom_line() + 
+  geom_segment(
+    aes(xend = 2019, yend = deaths), 
+    linetype = 2, 
+    colour = "grey") + 
+  geom_point(size = 2) + 
+  #scale_fill_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) + 
+  #scale_color_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) +
+  scale_x_continuous(breaks = seq(2010, 2019, by = 1)) +
+  geom_text(
+    aes(x = 2019.1, label = Location), 
+    hjust = 0) + 
+  gganimate::transition_reveal(Period) +
+  coord_cartesian(clip = 'off') + 
+  labs(
+    x = "Year",
+    y = "Average Deaths (per 100,000 population)",
+    title = "Average Deaths from Air Pollution in Africa's 9 Most Populous Countries") + 
+  theme_minimal() + 
+  theme(plot.margin = margin(5.5, 40, 5.5, 5.5), 
+        legend.position = "none")
+
+```
+
+
+```{r}
+
+africa <- continent |>
+  filter(ParentLocation == "Africa") |>
+  group_by(Location, Period, Gender) |>
+  mutate(deaths = (mean(FactValueNumeric))) |>
+  group_by(Location, Period) |>
+  arrange(desc(Location)) |>
+  group_by(Location, Period, Gender) |>
+  filter(!duplicated(deaths))
+
+africa
+
+mostpopulous <- africa |>
+  filter(Location == "Nigeria" || Location == "Ethiopia" || Location == "Egypt" || Location == "Democratic Republic of the Congo" || Location == "United Republic of Tanzania" || Location == "South Africa" || Location == "Kenya" || Location == "Sudan" || Location == "Uganda") |>
+  group_by(Location, Period, Gender) |>
+  mutate(deaths = (mean(FactValueNumeric))) |>
+  group_by(Location, Period) |>
+  arrange(desc(Location)) |>
+  group_by(Location, Period, Gender) |>
+  filter(!duplicated(deaths))
+
+ggplot(
+  mostpopulous, 
+  aes(x = Period, y = deaths, fill = Location, color = Location)) + 
+  geom_line() + 
+  geom_segment(
+    aes(xend = 2019, yend = deaths), 
+    linetype = 2, 
+    colour = "grey") + 
+  geom_point(size = 2) + 
+  #scale_fill_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) + 
+  #scale_color_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) +
+  scale_x_continuous(breaks = seq(2010, 2019, by = 1)) +
+  geom_text(
+    aes(x = 2019.1, label = Location), 
+    hjust = 0) + 
+  facet_wrap(~ Gender, dir = "v") + 
+  gganimate::transition_reveal(Period) +
+  coord_cartesian(clip = 'off') + 
+  labs(
+    x = "Year",
+    y = "Average Deaths (per 100,000 population)",
+    title = "Average Deaths from Air Pollution in Africa's 9 Most Populous Countries") + 
+  theme_minimal() + 
+  theme(plot.margin = margin(5.5, 40, 5.5, 5.5), 
+        legend.position = "none")
+
 
 ```
