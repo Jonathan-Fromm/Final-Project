@@ -323,3 +323,85 @@ ggplot(
         legend.position = "none")
 
 ```
+
+## Results and Discussion
+
+The results we found from our animated visualizations showed several important 
+insights about how HAP has affected different regions across the globe during 
+the 2010s. Our biggest takeaway was that while age-standardized death rates 
+attributable to HAP declined across all six WHO regions over the decade, the 
+gaps from region to region remained similar. For example, Africa was 
+consistently the region with the highest mortality rate, followed by South-East 
+Asia and the Western Pacific respectfully. On the other side of the spectrum, 
+the Americas and Europe maintained relatively low compared to the previously 
+mentioned regions and retained steadily declining rates throughout the period. 
+These disparities led us to do a deeper dive into the HAP inequality between the 
+nine most populous countries within Africa, showing even greater division within 
+the continent itself. We saw the Democratic Republic of the Congo contributing 
+significantly to the overall deaths within Africa and Uganda, Nigeria, Ethiopia, 
+Kenya, and Tanzania having around 120 deaths per 100 thousand in the “middle 
+ground” of the continent. South Africa was significantly lower than the majority 
+of the group. These findings suggest that although global progress has been 
+made, the distribution of HAP-related mortality remains very unequal.
+
+## Implications for Research Questions and Global Health Equity
+
+Our research question asked if regional death rates that were attributable to 
+HAP were converging during the 2010s. We were looking to uncover what this says 
+about equality across the world in terms of environmental burdens. The 
+visualizations indicate a decline in deaths per capita but an unequal 
+distribution by region. Absolute death rates have fallen across regions, which 
+implies that interventions such as cleaner cooking fuels, improved ventilation, 
+and global awareness campaigns may be contributing to improved health. However, 
+as mentioned above, the comparatively high death rates in Africa and Asia 
+demonstrate that structural problems exist in energy access, infrastructure, 
+technology, and economic development. These disparities continue to shape where 
+HAP remains the most lethal. Our visualization focusing on Africa reinforces 
+this pattern even within a single region. While all nine of Africa’s most 
+populous countries experienced declines from 2010 to 2019, the lines do not 
+converge. Rather we see large gaps persist between countries like the Democratic 
+Republic of the Congo, where death rates remain extremely high, and countries 
+such as South Africa, which consistently reports far lower burdens. This lack of 
+convergence highlights that improvements within Africa have been uneven, 
+mirroring the global inequality we observe across regions. Some countries appear 
+to be benefiting more rapidly from cleaner energy transitions and health 
+infrastructure than others. Additionally, looking at the continent as a whole, 
+the fact that Africa remained the most burdened region in every year of the 
+animation suggests that global progress has not translated proportionally across 
+populations, raising important questions about environmental justice and 
+resource allocation. Looking into policy, these findings make clear the need for 
+change with aiding the regions that take on the death burden of climate change.
+
+## Methodological Strengths and Limitations
+
+Our main concern with the estimates that we relied upon to create these 
+visualizations were that they rely on modeled data, not direct measurement. As 
+the WHO notes, these mortality estimates depend on exposure modeling and 
+assumptions about the distribution of HAP within populations. Limitations in air 
+quality monitoring networks, particularly in low-income countries, introduce 
+uncertainty into these estimates which will likely underestimate or overestimate 
+true death rates, raising the error rates for these countries. Our 
+visualization, while effective for identifying broad trends, cannot capture the 
+statistical uncertainty or confidence intervals around these modeled values.
+
+## Broader Significance
+
+Overall, our findings illustrate that global efforts to reduce household air 
+pollution are yielding positive results, but not equally or uniformly. The 
+steady decline in HAP-attributable mortality during the 2010s reflects real 
+progress in public health, energy infrastructure, and pollution reduction 
+initiatives. However, the persistent concentration of high mortality rates in 
+Africa, South-East Asia, and parts of the Western Pacific highlights ongoing 
+inequalities in technological access, socioeconomic conditions, and public 
+health capacity. Our Africa-focused visualization further underscores this point 
+by showing that even within a single region, countries are not converging toward 
+a shared mortality level. Instead, stark gaps remain between nations such as the 
+Democratic Republic of the Congo and South Africa, signaling that progress has 
+been highly uneven.
+
+From a global health perspective, this encapsulates the critical truth that 
+reducing risk factors requires a deep investment into the regions and a 
+continual emphasis on environmental justice. Our visualization makes these 
+disparities visible, reminding policymakers, researchers, and the public that 
+while the world is moving in the right direction, many regions remain 
+disproportionately burdened by preventable environmental health risks.
