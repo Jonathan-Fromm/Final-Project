@@ -1,5 +1,6 @@
 ---
 title: "Final Project"
+author: "Angelika Glogov, Cynthia Kennedy, Mac Riley, & Jonathan Fromm"
 format: html
 editor: visual
 ---
@@ -103,7 +104,7 @@ inform policy strategies for improving air quality and reducing health
 disparities.
 
 
-```{r, echo = FALSE, warning = FALSE, message=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 suppressMessages(library(tidyverse))
 
@@ -133,13 +134,12 @@ continent <- continent |>
   
 ```
 
-```{r, echo = FALSE, warning = FALSE, message=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 #| fig-width: 20
 #| fig-height: 5
 
-ggplot(
-  continent, 
+ggplot(continent, 
   aes(x = Period, y = deaths, fill = ParentLocation, color = ParentLocation)) + 
   geom_line() + 
   geom_segment(
@@ -166,7 +166,7 @@ ggplot(
 
 ```
 
-```{r, echo = FALSE, warning = FALSE, message=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 nogender <- rawdata |>
   filter(Dim2ValueCode == "GHECAUSE_GHE000000", Dim1ValueCode == "SEX_BTSX")
@@ -201,18 +201,16 @@ continent <- continent |>
   
 ```
 
-```{r, echo = FALSE, warning = FALSE, message=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 ggplot(data = continentnogender, aes(x = ParentLocation, y = deaths, fill = ParentLocation)) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) +
   theme(legend.position = "none") +
-  # Here comes the gganimate code
   transition_states(
     Period,
     transition_length = 2,
-    state_length = 1
-  ) +
+    state_length = 1) +
   enter_fade() +
   exit_shrink() +
   labs(title = 'Year: {closest_state}', x = 'Region', y = 'Average Deaths from Air Pollution (per 100,000 population)') +
@@ -220,7 +218,7 @@ ggplot(data = continentnogender, aes(x = ParentLocation, y = deaths, fill = Pare
 
 ```
 
-```{r, echo = FALSE, warning = FALSE, message=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 continent <- filtered|>
   group_by(ParentLocation, Period) |>
@@ -247,7 +245,7 @@ mostpopulous <- africa |>
 
 ```
 
-```{r, echo = FALSE, warning = FALSE, message=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 ggplot(
   mostpopulous, 
@@ -258,8 +256,6 @@ ggplot(
     linetype = 2, 
     colour = "grey") + 
   geom_point(size = 2) + 
-  #scale_fill_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) + 
-  #scale_color_manual(values = c("#3A90D6", "#3A51D6", "#5E3AD6", "#853AD6", "#AF3AD6", "#D63ACC")) +
   scale_x_continuous(breaks = seq(2010, 2019, by = 1)) +
   geom_text(
     aes(x = 2019.1, label = Location), 
@@ -276,7 +272,7 @@ ggplot(
 
 ```
 
-```{r, echo = FALSE, warning = FALSE, message=FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
 africa <- continent |>
   filter(ParentLocation == "Africa") |>
