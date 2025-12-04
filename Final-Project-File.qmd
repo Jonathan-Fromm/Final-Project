@@ -267,7 +267,7 @@ ggplot(
     y = "Average Deaths (per 100,000 population)",
     title = "Average Deaths from Air Pollution in Africa's 9 Most Populous Countries") +
   theme_minimal() + 
-  theme(plot.margin = margin(5.5, 40, 5.5, 5.5), 
+  theme(plot.margin = margin(5.5, 100, 5.5, 5.5), 
         legend.position = "none")
 
 ```
@@ -315,7 +315,7 @@ ggplot(
     y = "Average Deaths (per 100,000 population)",
     title = "Average Deaths from Air Pollution in Africa's 9 Most Populous Countries") + 
   theme_minimal() + 
-  theme(plot.margin = margin(5.5, 40, 5.5, 5.5), 
+  theme(plot.margin = margin(5.5, 100, 5.5, 5.5), 
         legend.position = "none")
 
 ```
